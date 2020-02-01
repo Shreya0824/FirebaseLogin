@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -50,11 +51,7 @@ public class Main3Activity extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(Main3Activity.this, "Loggedin", Toast.LENGTH_LONG).show();
                                                             firebaseFirestore.collection("Users").document(firebaseAuth.getCurrentUser().getUid()).set(
-                                                                    new Object() {
-                                                                        String Name = textView3.getText().toString();
-                                                                        String Hobbies = textView5.getText().toString();
-                                                                        String Email = textView.getText().toString();
-                                                                    }).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    new User(textView3.getText().toString(), textView5.getText().toString(), textView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                  @Override
                                                                                                  public void onComplete(@NonNull Task<Void> task) {
                                                                                                      progressBar2.setVisibility(View.GONE);
@@ -85,7 +82,7 @@ public class Main3Activity extends AppCompatActivity {
 
 
                 }else{
-                    Toast.makeText(Main3Activity.this, "Enter Details", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Main3Activity.this, "Enter all Details", Toast.LENGTH_LONG).show();
                 }
             }
         });
